@@ -65,6 +65,7 @@ subprojects {
 
   test {
     systemProperty 'bc.test.data.home', bcTestDataHome
+    maxHeapSize = "1536m"
 
     filter {
       includeTestsMatching "AllTest*"
