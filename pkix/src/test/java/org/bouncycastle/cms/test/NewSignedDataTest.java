@@ -1983,7 +1983,7 @@ public class NewSignedDataTest
 
         assertTrue(digAlgs.size() == 2);
         assertTrue(digAlgs.contains(new AlgorithmIdentifier(OIWObjectIdentifiers.idSHA1, DERNull.INSTANCE)));
-        assertTrue(digAlgs.contains(new AlgorithmIdentifier(NISTObjectIdentifiers.id_sha256)));
+        assertTrue(digAlgs.contains(new AlgorithmIdentifier(NISTObjectIdentifiers.id_sha256, DERNull.INSTANCE)));
 
         // verify sig and counter sig.
         assertTrue(s.verifySignatures(vProv, false));
