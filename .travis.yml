@@ -10,3 +10,22 @@ jobs:
       script:
         - "./gradlew test"
 
+#    ARTIFACTS_KEY=(AWS access key id)
+#    ARTIFACTS_SECRET=(AWS secret access key)  this are needed by travis to do the setup.
+
+#    - stage: publish
+#      addons:
+#        artifacts:
+#          s3_region: "us-west-1"
+#          paths:
+#            - build/artifacts/jdk1.5/jars/bcpkix-jdk15on-*.jar
+#      name: Publish
+#      if: branch=eloy-fer-form3-patch AND tag IS present
+#      skip_cleanup: true
+#      install:
+#        ## this needs to be adapted to company standards.
+#        - export ARTIFACTS_BUCKET="form3-internal/fork/bc-java/$TRAVIS_TAG
+#      script:
+#        - "./build15+"
+
+
