@@ -24,7 +24,7 @@ jobs:
 #      skip_cleanup: true
 #      install:
 #        ## this needs to be adapted to company standards.
-#        - export ARTIFACTS_BUCKET="form3-internal/fork/bc-java/$TRAVIS_TAG
+#        - export ARTIFACTS_BUCKET="form3-internal/releases/bc-java/$TRAVIS_TAG
 #      script:
 #        - "./build15+"
 
