@@ -24,3 +24,15 @@ artifacts {
     archives sourcesJar
 }
 
+group 'org.bouncycastle'
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            groupId group
+            artifactId "form3-bc-pkix"
+            version project.version
+            from components.java
+        }
+    }
+}
