@@ -81,16 +81,3 @@ subprojects {
 }
 
 test.dependsOn([':core:test', ':prov:test', ':pkix:test', ':mail:test', 'pg:test', ':tls:test'])
-
-publishing {
-  repositories {
-    maven {
-      name = "form3releases"
-      url "s3://form3-internal/releases"
-      credentials(AwsCredentials) {
-        accessKey "${System.getenv("AWS_ACCESS_KEY_ID")}"
-        secretKey "${System.getenv("AWS_SECRET_ACCESS_KEY")}"
-      }
-    }
-  }
-}

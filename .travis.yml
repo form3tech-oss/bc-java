@@ -15,6 +15,6 @@ jobs:
       if: branch=eloy-fer-form3-patch AND tag IS present
       skip_cleanup: true
       script:
-        - "./gradlew :pkix:publishShadowPublicationToForm3releasesRepository"
+        - "./gradlew publishMavenPublicationToForm3releasesRepository"
 
 
