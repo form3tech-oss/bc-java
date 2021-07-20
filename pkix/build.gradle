@@ -24,13 +24,15 @@ artifacts {
     archives sourcesJar
 }
 
+group 'org.bouncycastle'
+
 publishing {
     publications {
-        shadow(MavenPublication) { publication ->
-            groupId "org.bouncycastle"
+        maven(MavenPublication) {
+            groupId group
             artifactId "form3-bc-pkix"
             version project.version
-            project.shadow.component(publication)
+            from components.java
         }
     }
 }
