@@ -9,9 +9,8 @@ buildscript {
 plugins {
   id 'java-gradle-plugin'
   id 'com.gradle.plugin-publish' version '0.9.7'
+  id 'com.github.johnrengelman.shadow' version '6.1.0'
 }
-
-apply plugin: 'maven-publish'
 
 if (JavaVersion.current().isJava8Compatible())
 {
@@ -25,6 +24,8 @@ if (JavaVersion.current().isJava8Compatible())
 allprojects {
   apply plugin: 'java'
   apply plugin: 'idea'
+  apply plugin: 'maven-publish'
+  apply plugin: 'com.github.johnrengelman.shadow'
 
   repositories {
     mavenCentral()
@@ -38,6 +39,19 @@ allprojects {
             'commons-io:commons-io:2.10.0',
             'com.google.guava:guava:30.1.1-jre'
     )
+  }
+
+  publishing {
+    repositories {
+      maven {
+        name = "form3releases"
+        url "s3://form3-internal/releases"
+        credentials(AwsCredentials) {
+          accessKey "${System.getenv("AWS_ACCESS_KEY_ID")}"
+          secretKey "${System.getenv("AWS_SECRET_ACCESS_KEY")}"
+        }
+      }
+    }
   }
 }
 
@@ -81,16 +95,3 @@ subprojects {
 }
 
 test.dependsOn([':core:test', ':prov:test', ':pkix:test', ':mail:test', 'pg:test', ':tls:test'])
-
-publishing {
-  repositories {
-    maven {
-      name = "form3releases"
-      url "s3://form3-internal/releases"
-      credentials(AwsCredentials) {
-        accessKey "${System.getenv("AWS_ACCESS_KEY_ID")}"
-        secretKey "${System.getenv("AWS_SECRET_ACCESS_KEY")}"
-      }
-    }
-  }
-}
