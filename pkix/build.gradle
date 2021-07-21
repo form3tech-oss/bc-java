@@ -1,21 +1,20 @@
 dependencies {
-  compile project(':core')
-  compile project(':util')
-  compile project(':prov')
+    compile "org.bouncycastle:bcprov-jdk15on:$version"
+    compile "org.bouncycastle:bcutil-jdk15on:$version"
 }
 
 jar.baseName = "bcpkix-$vmrange"
 
 task sourcesJar(type: Jar) {
-  baseName = jar.baseName
-  classifier = 'sources'
-  from sourceSets.main.allSource
+    baseName = jar.baseName
+    classifier = 'sources'
+    from sourceSets.main.allSource
 }
 
 task javadocJar(type: Jar, dependsOn: javadoc) {
-  baseName = jar.baseName
-  classifier = 'javadoc'
-  from javadoc.destinationDir
+    baseName = jar.baseName
+    classifier = 'javadoc'
+    from javadoc.destinationDir
 }
 
 artifacts {

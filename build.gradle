@@ -11,8 +11,6 @@ plugins {
   id 'com.gradle.plugin-publish' version '0.9.7'
 }
 
-apply plugin: 'maven-publish'
-
 if (JavaVersion.current().isJava8Compatible())
 {
   allprojects {
@@ -25,6 +23,7 @@ if (JavaVersion.current().isJava8Compatible())
 allprojects {
   apply plugin: 'java'
   apply plugin: 'idea'
+  apply plugin: 'maven-publish'
 
   repositories {
     mavenCentral()
