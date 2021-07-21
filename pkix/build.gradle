@@ -1,6 +1,7 @@
 dependencies {
-    compile "org.bouncycastle:bcprov-jdk15on:$version"
-    compile "org.bouncycastle:bcutil-jdk15on:$version"
+    compile project(':core')
+    compile project(':util')
+    compile project(':prov')
 }
 
 jar.baseName = "bcpkix-$vmrange"
@@ -39,9 +40,22 @@ publishing {
     publications {
         maven(MavenPublication) {
             groupId group
+            artifact ("../build/artifacts/jdk1.5/jars/bcpkix-jdk15on-169.jar")
             artifactId "form3-bc-pkix"
             version project.version
-            from components.java
+            pom.withXml {
+                def dependenciesNode = asNode().appendNode('dependencies')
+                def dependencyNode = dependenciesNode.appendNode('dependency')
+                dependencyNode.appendNode('groupId', 'org.bouncycastle')
+                dependencyNode.appendNode('artifactId', 'bcprov-jdk15on')
+                dependencyNode.appendNode('version', "$version")
+                dependencyNode.appendNode('scope', 'compile')
+                dependencyNode = dependenciesNode.appendNode('dependency')
+                dependencyNode.appendNode('groupId', 'org.bouncycastle')
+                dependencyNode.appendNode('artifactId', 'bcutil-jdk15on')
+                dependencyNode.appendNode('version', "$version")
+                dependencyNode.appendNode('scope', 'compile')
+            }
         }
     }
 }

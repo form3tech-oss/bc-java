@@ -11,6 +11,8 @@ plugins {
   id 'com.gradle.plugin-publish' version '0.9.7'
 }
 
+ant.importBuild './ant/jdk15+.xml'
+
 if (JavaVersion.current().isJava8Compatible())
 {
   allprojects {
@@ -80,3 +82,6 @@ subprojects {
 }
 
 test.dependsOn([':core:test', ':prov:test', ':pkix:test', ':mail:test', 'pg:test', ':tls:test'])
+
+//pkix:publishMavenPublicationToForm3releasesRepository.dependsOn("clean", "build_ant")
+//pkix:publishMavenPublicationToMavenLocal.dependsOn("clean", "build_ant")
